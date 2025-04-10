@@ -1,0 +1,40 @@
+\documentclass[hyperref]{ctexart}
+\usepackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=2.50cm]{geometry} %页边距
+\usepackage{helvet}
+\usepackage{amsmath, amsfonts, amssymb} % 数学公式、符号
+\usepackage[english]{babel}
+\usepackage{graphicx}   % 图片
+\usepackage{url}        % 超链接
+\usepackage{bm}         % 加粗方程字体
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{fancyhdr} %设置页眉、页脚
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\usepackage{hyperref} %bookmarks
+\hypersetup{colorlinks, bookmarks, unicode} %unicode
+\usepackage{multicol}
+\title{\textbf{实验报告}}
+\author{\sffamily author1$^1$}
+\date{}
+\begin{document}
+\maketitle
+\indent{\bf 摘要: }\\	
+\begin{multicols}{2}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\section{实验目的}
+
+\section{实验原理}
+	\subsection{title}
+\section{实验结果}
+
+\section{讨论}
+
+\end{multicols}
+\end{document}
