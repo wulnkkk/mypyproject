@@ -38,8 +38,3 @@ print(df.simple())
 
 
 '''
-for i in range(5,33):
-    x=input()
-    df=pd.read_excel(r"{}".format(x.strip('""')))
-    df0.loc[[i],'思想政治立场':'总评']=list(df.loc[4:14,'Unnamed: 5'])
-    df0
