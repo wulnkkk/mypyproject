@@ -152,22 +152,59 @@ print(f"Peak at wavelength {bx[bpeaks[0]]:.2f} nm, FWHM: {bfwhm:.2f} nm")
 yfwhm, yleft_idx, yright_idx = calculate_fwhm(yx,yy , ypeaks[0])
 print(f"Peak at wavelength {yx[ypeaks[0]]:.2f} nm, FWHM: {yfwhm:.2f} nm")
 #作图
-plt.figure(dpi=200) #图片清晰度 
-plt.title("led红黄蓝光的光谱")
-plt.xlabel("波长$\lambda$(nm)")
-plt.ylabel('相对光强')
-plt.plot(rx,ry,"red",label="红光的谱线")
-plt.plot(bx,by,"blue",label="蓝光的谱线")
-plt.plot(yx,yy,"yellow",label="黄光的谱线")
-plt.axvline(rx[rleft_idx], color='b', linestyle='--', linewidth=1)
-plt.axvline(rx[rright_idx], color='b', linestyle='--', linewidth=1)
-plt.axvline(yx[yleft_idx], color='r', linestyle='--', linewidth=1)
-plt.axvline(yx[yright_idx], color='r', linestyle='--', linewidth=1)
-plt.axvline(bx[bleft_idx], color='orange', linestyle='--', linewidth=1)
-plt.axvline(bx[bright_idx], color='orange', linestyle='--', linewidth=1)
-plt.scatter([rxp,bxp,yxp],[ryp,byp,yyp],50 ,color="g",marker='x', label='特征峰值')
-plt.text(rxp[0],ryp[0]+1000,"({:.2f}nm,{},{:.2f}nm)".format(rxp[0],int(ryp[0]),rfwhm))
-plt.text(bxp[0],byp[0]+1000,"({:.2f}nm,{},{:.2f}nm)".format(bxp[0],int(byp[0]),bfwhm))
-plt.text(yxp[0]-100,yyp[0]+1000,"({:.2f}nm,{},{:.2f}nm)".format(yxp[0],int(yyp[0]),yfwhm))
-plt.legend()
-plt.show()
+# plt.figure(dpi=200) #图片清晰度 
+# plt.title("led红黄蓝光的光谱")
+# plt.xlabel("波长$\lambda$(nm)")
+# plt.ylabel('相对光强')
+# plt.plot(rx,ry,"red",label="红光的谱线")
+# plt.plot(bx,by,"blue",label="蓝光的谱线")
+# plt.plot(yx,yy,"yellow",label="黄光的谱线")
+# plt.axvline(rx[rleft_idx], color='b', linestyle='--', linewidth=1)
+# plt.axvline(rx[rright_idx], color='b', linestyle='--', linewidth=1)
+# plt.axvline(yx[yleft_idx], color='r', linestyle='--', linewidth=1)
+# plt.axvline(yx[yright_idx], color='r', linestyle='--', linewidth=1)
+# plt.axvline(bx[bleft_idx], color='orange', linestyle='--', linewidth=1)
+# plt.axvline(bx[bright_idx], color='orange', linestyle='--', linewidth=1)
+# plt.scatter([rxp,bxp,yxp],[ryp,byp,yyp],50 ,color="g",marker='x', label='特征峰值')
+# plt.text(rxp[0],ryp[0]+1000,"({:.2f}nm,{},{:.2f}nm)".format(rxp[0],int(ryp[0]),rfwhm))
+# plt.text(bxp[0],byp[0]+1000,"({:.2f}nm,{},{:.2f}nm)".format(bxp[0],int(byp[0]),bfwhm))
+# plt.text(yxp[0]-100,yyp[0]+1000,"({:.2f}nm,{},{:.2f}nm)".format(yxp[0],int(yyp[0]),yfwhm))
+# plt.legend()
+# plt.show()
+
+# 多项式拟合光谱定标与误差分析
+def fun(X,P): # n阶多项式
+    n=len(P)
+    Y=np.zeros_like(X)
+    for i in range(n):
+        Y=Y+P[i]*X**(n-1-i)
+    return Y
+
+## 一次定标
+Y=np.array([404.66,435.83,546.07,576.96,579.07])
+X=np.array([398,881,2723,3273,3312])
+
+for i in range(2,5):
+    P=np.polyfit(X,Y,i) 
+    Y_=fun(X,P) 
+    dY=abs(Y_-Y)
+    Aerr=dY/Y
+    for i in range(len(X)):
+        print('校准波长{:.2f}'.format(Y_[i]),end=" ")
+        print('误差{:.2f}'.format(dY[i]),end=" ")
+        print('相对误差{:.2f}'.format(Aerr[i]))
+    print()
+
+
+## 二次定标
+Y=np.array([546.07,576.96,579.07])
+X=np.array([1367,1892,1928])
+
+P=np.polyfit(X,Y,2) 
+Y_=fun(X,P) 
+dY=abs(Y_-Y)
+Aerr=dY/Y
+for i in range(len(X)):
+    print('校准波长{:.2f}'.format(Y_[i]),end=" ")
+    print('误差{:.2f}'.format(dY[i]),end=" ")
+    print('相对误差{:.2f}'.format(Aerr[i]))
