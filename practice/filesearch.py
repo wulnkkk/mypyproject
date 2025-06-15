@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
+import re
 try:
-    df=pd.read_excel(r"D:\86151\Documents\个人\班级管理资料\物理2201信息汇\物理2201花名册.xlsx") #输入文件路径
+    df=pd.read_excel(r"C:\Users\zty\Downloads\2201班暑期实习统计（收集结果）.xlsx") #输入文件路径
 except FileNotFoundError :                                      #异常处理
     print("未找到文件，请检查文件路径是否正确。")           
 else:
@@ -28,8 +29,12 @@ name=[]
 index=[]
 a=re.compile("学生：(\S+)-(\S+)-")
 for i in df["姓名"]:
-    name.append(a.findall(i)[0][0])
-    index.append(a.findall(i)[0][1])
+    if i=="-":
+      name.append("-")
+      index.append("-")
+    else:
+        name.append(a.findall(i)[0][0])
+        index.append(a.findall(i)[0][1])
 '''
 
 '''
