@@ -1,0 +1,78 @@
+\documentclass[11pt,a4paper,sans]{moderncv}   % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\usepackage{xcolor}
+\definecolor{myblue}{RGB}{79, 128, 189}
+
+% moderncv 主题
+\moderncvstyle{classic}                        % 选项参数是 ‘casual’, ‘classic’, ‘oldstyle’ 和 ’banking’
+\moderncvcolor{blue}                          % 选项参数是 ‘blue’ (默认)、‘orange’、‘green’、‘red’、‘purple’ 和 ‘grey’
+%\nopagenumbers{}                             % 消除注释以取消自动页码生成功能
+
+% 字符编码
+\usepackage{ctex}
+% 调整页面
+\usepackage[scale=0.95]{geometry}
+\setlength{\hintscolumnwidth}{3cm}           % 如果你希望改变日期栏的宽度
+% 修改 section 命令以将标题放在分割线上方,添加背景框
+\renewcommand*{\section}[1]{
+  \vspace{2pt} % 垂直间距
+  \begingroup
+    \par\noindent % 段落开始，无缩进
+    \colorbox{myblue}{\parbox{0.2\textwidth}{\strut % 使用 colorbox 添加背景，parbox 用于内容对齐
+      \Large\bfseries\color{white}#1\strut % 标题文本，白色字体
+    }}%
+    \\
+    {\color{myblue}\rule{\textwidth}{0.8pt}} % 分割线
+  \endgroup
+}
+
+
+% 调整页脚间距
+% 个人信息
+\name{朱天宇}{}
+\title{个人简历}                     % 可选项、如不需要可删除本行
+\address{现居阜埠河湖南大学天马学生公寓}{湖南长沙}            % 可选项、如不需要可删除本行
+\phone[mobile]{15137496835}              % 可选项、如不需要可删除本行
+\email{pigskyerfish@163.com}                    % 可选项、如不需要可删除本行
+\photo[64pt][0.5pt]{我的照片_1.jpg}                  % ‘64pt’是图片必须压缩至的高度、‘0.4pt‘是图片边框的宽度 (如不需要可调节至0pt)、’picture‘ 是图片文件的名字;可选项、如不需要可删除本行
+
+
+\begin{document}
+\maketitle
+\section{基本信息}
+\cvdoubleitem{性\hspace{22pt}别：}{\small 男}{籍\hspace{22pt}贯：}{\small 河南省许昌市}
+\cvdoubleitem{民\hspace{22pt}族：}{\small 汉族}{政治面貌：}{\small 中共预备党员}
+
+\section{教育背景}
+\cventry{2022.09-至今}{本科}{湖南大学}{应用物理系}{\textit{专业核心成绩排名：23/98}}{主要课程:电动力学(93)、量子力学(80)、热力学与统计物理学(90)、光学(85)等}  
+
+
+\section{主要科研经历}
+\textbf{1.第九届全国大学生物理实验竞赛}
+\\
+参赛项目：《利用悬臂梁弯曲和CCD测量材料杨氏模量》
+\\
+负责任务：CCD的单片机控制、控制与数据处理系统的UI设计。
+\\
+\textbf{2.光电子学相关的课程设计}
+\\
+研究内容：《光纤弯曲损耗的理论分析与有限元模拟》
+\\
+负责任务：关于光纤弯曲损耗的理论综述、有限元模拟结果的处理与分析。
+
+\section{主要荣誉奖项}
+\cvline{2022.09-2023.09}{湖南大学年度一等学业奖学金}
+\cvline{2022.09-2023.09}{湖南大学年度优秀学生干部}
+\cvline{2023.06-2023.09}{第九届全国大学生物理实验竞赛三等奖}
+
+\section{主要学生工作}
+\cvitemwithcomment{2022.09-至今}{物理2201班班长}{优秀学生干部}
+\section{主要科研技能}
+\cvline{文档处理}{熟练使用Word、Excel等办公软件，并可结合Python编程进行一些自动化处理；掌握Markdown、Latex等排版系统和标记语言；}
+\cvline{编程计算}{精通Python语言，可以完成科学计算、绘图、数据处理等任务；掌握C语言、Matlab编程语言，可以实现基础的单片机控制与UI界面设计；掌握Git分布式版本控制系统的使用；}
+\cvline{综合能力}{擅长反思总结，在课程学习过程中使用思维导图软件写下13.1W字的笔记心得；在完成各种项目与脚本编写工作时，重视注释与说明文档的编写，本科期间许多代码脚本整理发布在GitHub平台(https://github.com/wulnkkk/mypyproject)。}
+
+
+\end{document}
+
+
+%% 文件结尾 `template-zh.tex'.
